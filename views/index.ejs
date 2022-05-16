@@ -5,16 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .subject {
-            background-color: #c6ec6e;
-            padding: 5px;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <% grades.forEach(grade => { %>
-    <%= grade.column.subject.name%>   <%= grade.content %> <br>
-    <% }) %>
+    <div>
+     <% for (const [key, value] of Object.entries(gradesList)) { %>
+     <div><%= key  %></div><%= value %><br>
+     <% } %>
+    </div>
 </body>
 </html>
