@@ -14,12 +14,22 @@ app.get('/', (req, res) => {
 keystore.loadFromJsonFile("keystore.json");
 
 const client = new VulcanHebe(keystore, AccountTools.loadFromJsonFile("account.json"));
-let gradesList = []
+
+var gradesList = {}
         client.selectStudent().then(() => {
             client.getGrades().then(grades => {
-                res.render('index', {grades: grades})
-                console.log(grades)
+                let a = 0;
+                grades.forEach(grade => {
+                        console.log(grade)
+                        if(gradesList[grade.column.subject.name] == undefined)
+                            gradesList[grade.column.subject.name] = []
+                        gradesList[grade.column.subject.name].push([grade.content])
+                    })
+                    console.log(gradesList)
+                res.render('index', {gradesList: gradesList})
+
             })
+            
         })
 })
 
