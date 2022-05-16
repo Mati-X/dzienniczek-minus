@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const port = 3000
@@ -18,12 +17,11 @@ const client = new VulcanHebe(keystore, AccountTools.loadFromJsonFile("account.j
 var gradesList = {}
         client.selectStudent().then(() => {
             client.getGrades().then(grades => {
-                let a = 0;
                 grades.forEach(grade => {
                         console.log(grade)
                         if(gradesList[grade.column.subject.name] == undefined)
                             gradesList[grade.column.subject.name] = []
-                        gradesList[grade.column.subject.name].push([grade.content])
+                        gradesList[grade.column.subject.name].push([grade.content,[grade.dateModify.date,grade.dateModify.time]])
                     })
                     console.log(gradesList)
                 res.render('index', {gradesList: gradesList})
