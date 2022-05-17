@@ -21,7 +21,7 @@ var gradesList = {}
                         console.log(grade)
                         if(gradesList[grade.column.subject.name] == undefined)
                             gradesList[grade.column.subject.name] = []
-                        gradesList[grade.column.subject.name].push([grade.content,[grade.dateModify.date,grade.dateModify.time]])
+                        gradesList[grade.column.subject.name].push([grade.content,grade.column.name,[grade.dateModify.date,grade.dateModify.time]])
                     })
                     console.log(gradesList)
                 res.render('index', {gradesList: gradesList})

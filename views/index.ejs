@@ -12,9 +12,21 @@
     <% for (const [key, value] of Object.entries(gradesList)) { %>
     <div class="p-4 w-72"><%= key  %><br>
     <% value.forEach(grade=> { %>
-    <%= grade[0] %>
+    <button onclick="ShowGrade(['<%=grade[0]%>','<%=grade[1]%>',['<%=grade[2][0]%>','<%=grade[2][1]%>']])"><%= grade[0] %></button>
     <%}) %></div>
     <% } %>
+    <div id="grade-window" class="fixed top-0 right-0"></div>
     </div>
+
+    <script>
+        function ShowGrade(grade) {
+            var GradeWindow = document.getElementById('grade-window');
+            var str = grade[0].replace(/\s+/g, '');
+            GradeWindow.innerHTML =  str + "<br>";
+            GradeWindow.innerHTML += grade[1] + "<br>";
+            GradeWindow.innerHTML += grade[2][0] + "<br>";
+            GradeWindow.innerHTML += grade[2][1];
+        }
+    </script>
 </body>
 </html>
